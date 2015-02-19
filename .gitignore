@@ -2,6 +2,12 @@
 __pycache__/
 *.py[cod]
 
+bin/*
+include/*
+lib/*
+man/*
+docs/*
+
 # C extensions
 *.so
 

@@ -1,0 +1,8 @@
+MacFSEvents==0.4
+colorama==0.3.3
+mockredispy==2.9.0.10
+nose==1.3.4
+python-termstyle==0.1.10
+redis==2.10.3
+sniffer==0.3.4
+wsgiref==0.1.2
