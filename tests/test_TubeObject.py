@@ -1,28 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""
-test_{{ cookiecutter.repo_name }}
-----------------------------------
-
-Tests for `{{ cookiecutter.repo_name }}` module.
-"""
-
 import unittest
+from tubetrafficmonitor import TTM
 
-from tubetrafficmonitor import TPM
-
-
-class Test{{ cookiecutter.repo_name|capitalize }}(unittest.TestCase):
+class TestTPMObject(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.ttm = TTM()
 
-    def test_something(self):
-        pass
-
-    def tearDown(self):
-        pass
+    def test_TTMExists(self):
+        self.assertEqual( type(self.ttm), TTM )
 
 if __name__ == '__main__':
     unittest.main()
