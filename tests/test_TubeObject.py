@@ -10,7 +10,7 @@ Tests for `{{ cookiecutter.repo_name }}` module.
 
 import unittest
 
-from {{ cookiecutter.repo_name }} import {{ cookiecutter.repo_name }}
+from tubetrafficmonitor import TPM
 
 
 class Test{{ cookiecutter.repo_name|capitalize }}(unittest.TestCase):
