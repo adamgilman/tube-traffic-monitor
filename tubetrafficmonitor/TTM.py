@@ -19,6 +19,7 @@ class TPH(object):
 		self.name = name
 		self.r = r
 		self.key = "!trend-%s" % name
+		self.r.delete(self.key)
 		self.current = 0
 
 	def add(self, trainID):
@@ -27,9 +28,9 @@ class TPH(object):
 	@property
 	def current(self):
 	    #return 0 -> now-1 hour
-		maxtime =  time.mktime( (datetime.now() - timedelta(hours=1)).timetuple() )
-		mintime = 0
-		return self.r.zrangebyscore(self.key, mintime, maxtime), mintime, maxtime
+		maxtime = time.mktime( (datetime.now() - timedelta(hours=1)).timetuple() )
+		mintime = epoch()
+		return len(self.r.zrangebyscore(self.key, maxtime, mintime))
 
 	@current.setter
 	def current(self, value):

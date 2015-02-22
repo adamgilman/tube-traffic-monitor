@@ -24,8 +24,8 @@ class TestTPMtph(unittest.TestCase):
 		#send one train w/ trainID in
 		#get 1 TPH back
 		tph = self.ttm.setupTPH("testing")
-		tph.add("trainID")
-		tph.add("trainID")
+		tph.add("trainID:test_TPH1")
+		tph.add("trainID:test_TPH1.1")
 		self.assertEqual( tph.current, 2 )
 
 	@patch('redis.Redis', mock_redis_client)
@@ -33,14 +33,14 @@ class TestTPMtph(unittest.TestCase):
 		#send 1 train down
 		#1 hour later, send 3
 		tph = self.ttm.setupTPH("testing")
-		tph.add("trainID1")
+		tph.add("trainID1.1")
 		self.assertEqual( tph.current, 1 )
 		onehour = td(hours=1, minutes=1)
 		timetarget = dt.now() + onehour
 		with freeze_time( timetarget ):
-			tph.add("trainID1")
-			tph.add("trainID1")
-			tph.add("trainID1")
+			tph.add("trainID2.1")
+			tph.add("trainID2.2")
+			tph.add("trainID2.3")
 			self.assertEqual( tph.current, 3 )
 
 		
