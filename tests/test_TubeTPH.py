@@ -65,7 +65,27 @@ class TestTPMtphArchive(unittest.TestCase):
 		#should be in current hours archive
 		self.assertEqual( len( tph.archive( key, dt.now() ) ), 2 )
 
+	def test_2TPH_Archive_Check1HourBackwards(self):
+		key = "testing"
+		tph = self.ttm.setupTPH(key)
+		tph.add("trainID:test_TPH2")
+		tph.add("trainID:test_TPH2.1")
+		self.assertEqual( tph.current, 2 )
+
+		#should be in current hours archive
+		self.assertEqual( len( tph.archive( key, dt.now() ) ), 2 )
+
 		#should be in previous hours archive
+		onehour = td(hours=1)
+		timetarget = dt.now() + onehour
+		#go forward in time 1 hour
+		with freeze_time( timetarget ):
+			tph.add("trainID:test_TPH2.1")
+			#check the archive an hour ago 
+			onehourago = dt.now() - onehour
+			self.assertEqual( len( tph.archive( key, onehourago ) ), 2 )
+
+
 
 
 
